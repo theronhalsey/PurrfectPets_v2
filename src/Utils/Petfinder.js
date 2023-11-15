@@ -1,5 +1,5 @@
-const apiKey = process.env.API_KEY;
-const apiSecret = process.env.API_SECRET;
+const apiKey = import.meta.env.VITE_API_KEY;
+const apiSecret = import.meta.env.VITE_API_SECRET;
 
 let accessToken;
 
