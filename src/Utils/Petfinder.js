@@ -1,5 +1,5 @@
-const apiKey = import.meta.env.NODE_ENV_API_KEY;
-const apiSecret = import.meta.env.NODE_ENV_API_SECRET;
+const apiKey = process.env.NODE_ENV_API_KEY;
+const apiSecret = process.env.NODE_ENV_API_SECRET;
 
 let accessToken;
 
