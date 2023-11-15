@@ -1,6 +1,3 @@
-const apiKey = import.meta.env.VITE_API_KEY;
-const apiSecret = import.meta.env.VITE_API_SECRET;
-
 let accessToken;
 
 export const Petfinder = {
@@ -8,7 +5,7 @@ export const Petfinder = {
         const requestUrl = `https://api.petfinder.com/v2/oauth2/token`;
         const response = await fetch(requestUrl, {
             method: 'POST',
-            body: `grant_type=client_credentials&client_id=${apiKey}&client_secret=${apiSecret}`,
+            body: `grant_type=client_credentials&client_id=${import.meta.env.VITE_API_KEY}&client_secret=${import.meta.env.VITE_API_SECRET}`,
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             }
