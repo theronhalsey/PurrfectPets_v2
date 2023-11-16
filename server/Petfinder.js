@@ -5,7 +5,7 @@ export const Petfinder = {
         const requestUrl = `https://api.petfinder.com/v2/oauth2/token`;
         const response = await fetch(requestUrl, {
             method: 'POST',
-            body: `grant_type=client_credentials&client_id=${import.meta.env.VITE_API_KEY}&client_secret=${import.meta.env.VITE_API_SECRET}`,
+            body: `grant_type=client_credentials&client_id=${process.env.PETFINDER_API_KEY}&client_secret=${process.env.PETFINDER_API_SECRET}`,
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             }
