@@ -1,4 +1,7 @@
-let accessToken;
+import dotenv from 'dotenv'
+dotenv.config();
+
+let accessToken = '';
 
 export const Petfinder = {
     async getAccessToken() {
@@ -13,10 +16,12 @@ export const Petfinder = {
         const jsonResponse = await response.json();
         accessToken = jsonResponse.access_token;
         const expiresIn = jsonResponse.expires_in;
-        window.setTimeout(() => accessToken = '', expiresIn);
+        setTimeout(() => accessToken = '', expiresIn);
     },
     async getPets() {
-        await Petfinder.getAccessToken()
+        if (accessToken === '') {
+            await Petfinder.getAccessToken()
+        }
         const requestURL = 'https://api.petfinder.com/v2/animals?type=dog&page=2';
         return fetch(requestURL, {
             headers: {
@@ -30,8 +35,7 @@ export const Petfinder = {
             return response.json();
         })
         .then(data => {
-            const pets = data.animals;
-            return pets;
+            return data.animals;
         })
         .catch(error => {
             console.error('Error fetching pets: ', error);

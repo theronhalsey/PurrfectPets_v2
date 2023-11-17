@@ -9,7 +9,7 @@ function App() {
   useEffect(() => {
     fetch("/getPets")
     .then((res) => res.json())
-    .then((data) => setPets(pets.pets))
+    .then((data) => setPets(data))
   }, []);
 
   return (
