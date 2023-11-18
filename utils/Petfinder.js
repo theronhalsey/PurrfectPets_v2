@@ -1,4 +1,7 @@
-let accessToken;
+import dotenv from 'dotenv'
+dotenv.config();
+
+let accessToken = '';
 
 export const Petfinder = {
     async getAccessToken() {
@@ -15,9 +18,11 @@ export const Petfinder = {
         const expiresIn = jsonResponse.expires_in;
         setTimeout(() => accessToken = '', expiresIn);
     },
-    async getPets() {
-        await Petfinder.getAccessToken()
-        const requestURL = 'https://api.petfinder.com/v2/animals?type=dog&page=2';
+    async getPets(page=1) {
+        if (accessToken === '') {
+            await Petfinder.getAccessToken()
+        }
+        const requestURL = `https://api.petfinder.com/v2/animals?page=${page}`;
         return fetch(requestURL, {
             headers: {
                 'Authorization': `Bearer ${accessToken}`,
@@ -30,8 +35,7 @@ export const Petfinder = {
             return response.json();
         })
         .then(data => {
-            const pets = data.animals;
-            return pets;
+            return data.animals;
         })
         .catch(error => {
             console.error('Error fetching pets: ', error);

@@ -4,7 +4,7 @@ import Petfinder from'./Petfinder'
 const router = express.Router();
 
 router.get("/getToken", (req, res) => {
-    res.json({pets: Petfinder.getPets()})
+    res.json({token: Petfinder.getAccessToken()})
 });
 
 router.get("/getPets", (req, res) => {
